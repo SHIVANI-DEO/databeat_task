@@ -1,0 +1,99 @@
+ 1.Write a SQL query to create these tables in your database and insert the data into these tables  with the following characteristics:
+a)create table employees(
+emp_id int NOT NULL,DEFAULT,
+first_name char(50),
+last_name char(50),
+salary int CHECK,
+joining_date datetime,
+department char(20)
+primary key (emp_id));
+
+constraints used:
+NOT NULL
+DEFAULT
+CHECK
+PRIMARY KEY
+FOREIGN KEY
+
+b)create table variable(
+emp_ref_id int references employee(emp_id) NOT NULL,DEFAULT,
+variable_date datetime,
+variable_amount int
+foreign key (emp_ref_id));
+
+create table designation(
+emp_ref_id int references employee(emp_id) NOT NULL ,DEFAULT,
+emp_title char(20),
+affected_from datetime,
+foreign key (emp_ref_id));
+
+ Name the four different types of joins? Give examples of each by performing all the joins on the Employees table and Designation Table.
+1.inner
+eg:
+SELECT EMPLOYEE.EMP_ID,DESIGNATION.EMP_TITLE
+FROM EMPLOYEE INNER JOIN DESIGNATION ON
+EMPLOYEE.EMP_ID=DESIGNATION.EMP_REF_ID;
+
+
+2.outer
+eg:
+SELECT EMPLOYEE.EMP_ID,EMPLOYEE.LAST_NAME,
+DESIGNATION.EMP_TITLE 
+FROM EMPLOYEE OUTER JOIN DESIGNATION ON
+EMPLOYEE.EMP_ID=DESIGNATION.EMP_REF_ID;
+
+3.left
+eg:
+SELECT EMPLOYEE.EMP_ID
+FROM EMPLOYEE LEFT JOIN DESIGNATION ON
+EMPLOYEE.EMP_ID=DESIGNATION.EMP_REF_ID;
+
+4.right
+eg:
+SELECT EMPLOYEE.EMP_ID,EMPLOYEE.FIRST_NAME,
+DESIGNATION.EMP_TITLE 
+FROM EMPLOYEE RIGHT JOIN DESIGNATION ON
+EMPLOYEE.EMP_ID=DESIGNATION.EMP_REF_ID;
+
+What is cross join? Write a query to give an example of the same by performing it on the Employees table and Designation table.
+The SQL CROSS JOIN produces a result set which is the number of rows in the
+ first table multiplied by the number of rows in the second table if no WHERE clause 
+is used along with CROSS JOIN.This kind of result is called as Cartesian Product.
+
+Eg:
+SELECT * 
+FROM EMPLOYEE 
+CROSS JOIN DESIGNATION;
+
+What are the clauses used with Select statements and what are the preference orders of it? 
+
+FROM
+WHERE
+GROUP BY
+HAVING
+ORDER BY
+
+ preferences are:
+SELECT
+FROM
+WHERE
+GROUP BY
+HAVING
+ORDER BY
+
+ What is the stored procedure?
+A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again. So if you have an SQL 
+query that you write over and over again, save it as a stored procedure, and then just call it to execute it.
+
+
+a)SELECT FIRST_NAME,LAST_NAME,DEPARMENT,MAX(VARIABLES_AMOUNT),
+MIN(VARIABLES_AMOUNT) FROM EMPLOYEE 
+INNER JOIN VARIABLE 
+ON EMPLOYEE.EMP_ID=VARIABLE.EMP_REF_ID
+
+
+
+
+
+
+
